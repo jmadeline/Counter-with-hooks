@@ -3,22 +3,26 @@ import React, { useState } from 'react';
 function Counter() {
   // Déclare une nouvelle variable d'état, qu’on va appeler « count »
   // Déclare une fonction setCount qui permet de modifier la valeur de count
+  const initialInput = '';
   const [count, setCount] = useState(0);
+  const [input, setInput] = useState(initialInput);
 
-  function startingValue(event) {
-    setCount(count = event.target.value);
+  const startingValue = (event) => {
+    setInput(event.target.value);
   }
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
+    setCount(parseInt(input));
+    setInput(initialInput);
     event.preventDefault();
   }
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form onSubmit={handleSubmit} >
+        <label >
           Valeur de départ du compteur :
-        <input type="text" />
+        <input type="text" value={input} onChange={startingValue} />
         </label>
         <input type="submit" value="Envoyer" />
       </form>
