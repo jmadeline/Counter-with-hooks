@@ -5,8 +5,23 @@ function Counter() {
   // Déclare une fonction setCount qui permet de modifier la valeur de count
   const [count, setCount] = useState(0);
 
+  function startingValue(event) {
+    setCount(count = event.target.value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
   return (
     <div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Valeur de départ du compteur :
+        <input type="text" />
+        </label>
+        <input type="submit" value="Envoyer" />
+      </form>
       <p>Le compteur est  à : {count} </p>
       <button onClick={() => setCount(count + 1)}>
         +1
